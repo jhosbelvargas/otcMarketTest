@@ -1,10 +1,10 @@
 "use client";
-import axios from "axios";
+/* import axios from "axios"; */
 import Link from "next/link";
-import { useState } from "react";
+/* import { useState } from "react"; */
 
 export default function Prueba() {
-  const [appData, setAppData] = useState("");
+  /* const [appData, setAppData] = useState("");
   const [secretData, setSecretData] = useState("");
   const [pageData, setPageData] = useState("");
   const [whatsNum, setWhatsNum] = useState("");
@@ -79,11 +79,11 @@ export default function Prueba() {
   const dataUser = localStorage.getItem("dataUser");
   const clientId = JSON.parse(dataUser).appId;
 
-  const urlPage = `https://www.facebook.com/v18.0/dialog/oauth?client_id=${clientId}&redirect_uri=https://www.example.com/&scope=pages_show_list,business_management,instagram_basic,instagram_manage_comments,instagram_content_publish,pages_read_engagement,pages_manage_posts,public_profile`;
+  const urlPage = `https://www.facebook.com/v18.0/dialog/oauth?client_id=${clientId}&redirect_uri=https://www.example.com/&scope=pages_show_list,business_management,instagram_basic,instagram_manage_comments,instagram_content_publish,pages_read_engagement,pages_manage_posts,public_profile`; */
 
   return (
     <div>
-      <h1>Personal Settings</h1>
+      {/* <h1>Personal Settings</h1>
       <h1>Facebook Data</h1>
       <form onSubmit={handleSubmit}>
         <label>
@@ -159,7 +159,7 @@ export default function Prueba() {
       <br />
       <button onClick={getToken}>Get the Access Token</button>
       <br />
-      <br />
+      <br /> */}
       <Link href="/">regresar</Link>
     </div>
   );
