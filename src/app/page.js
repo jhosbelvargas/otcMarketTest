@@ -5,13 +5,13 @@ import withReactContent from "sweetalert2-react-content";
 import Link from "next/link";
 import { initFacebookSdk } from "./api/facebook/route";
 import Modal from "@/components/Modal";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+/* import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHeart,
   faPaperPlane,
   faComment,
   faBookmark,
-} from "@fortawesome/free-regular-svg-icons";
+} from "@fortawesome/free-regular-svg-icons"; */
 
 function HomePage() {
   const [prompt, setPrompt] = useState("");
@@ -479,7 +479,7 @@ function HomePage() {
         <Modal isOpen={isModalOpen} onClose={closeModal}>
           <div className="container">
             <img src={imagen} alt="Instagram Image Post" />
-            <div className="grid grid-cols-6">
+            {/* <div className="grid grid-cols-6">
               <div className="col-start-1 col-end-3">
                 <FontAwesomeIcon icon={faHeart} />
                 <FontAwesomeIcon icon={faComment} className="mx-3" />
@@ -488,7 +488,7 @@ function HomePage() {
               <div className="col-end-7 col-span-1 justify-end flex items-center">
                 <FontAwesomeIcon icon={faBookmark} />
               </div>
-            </div>
+            </div> */}
             <p>10.840 likes</p>
             <p>{result[2] && result[2].replace(/[\[\]]/g, "")}</p>
             <br />
