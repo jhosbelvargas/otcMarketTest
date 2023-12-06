@@ -2,26 +2,71 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+.twitter {
+  transition: 0.5s ease;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+.twitter:hover {
+  color: #55acef;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
+.facebook {
+  transition: 0.5s ease;
+}
+
+.facebook:hover {
+  color: #1873eb;
+}
+
+.instagram {
+  transition: 0.5s ease;
+}
+
+.instagram:hover {
   background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+    45deg,
+    #405de6,
+    #5851db,
+    #833ab4,
+    #c13584,
+    #e1306c,
+    #fd1d1d,
+    #f56040,
+    #f77737,
+    #fcaf45
+  );
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.linkedin {
+  transition: 0.5s ease;
+}
+
+.linkedin:hover {
+  color: #0270ad;
+}
+
+.whatsapp {
+  transition: 0.5s ease;
+}
+
+.whatsapp:hover {
+  color: #11ba17;
+}
+
+.reddit {
+  transition: 0.5s ease;
+}
+
+.reddit:hover {
+  color: #ff4500;
+}
+
+.telegram {
+  transition: 0.5s ease;
+}
+
+.telegram:hover {
+  color: #31a8e0;
 }
