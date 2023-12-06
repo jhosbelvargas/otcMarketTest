@@ -218,10 +218,10 @@ function HomePage() {
 
 
   useEffect(() => {
-    const data = localStorage.getItem("dataUser");
+    /* const data = localStorage.getItem("dataUser");
     const data2 = JSON.parse(data);
     setDataUser(data2);
-    setFacebookIdPage(data2.pageId);
+    setFacebookIdPage(data2.pageId); */
     initFacebookSdk();
     getIdInstagram();
   }, [imagen]);
