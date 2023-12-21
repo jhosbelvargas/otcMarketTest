@@ -1,20 +1,20 @@
 import axios from "axios";
 const initFacebookSdk = async () => {
-  /* const respUser = await axios.get(`http://localhost:4000/user/findById/6568cbefe9c2eea7efb5af8a`);
+  const respUser = await axios.get(`http://localhost:4000/user/findById/6568cbefe9c2eea7efb5af8a`);
   const respData = await axios.get("http://localhost:4000/config/6568cbefe9c2eea7efb5af8a");
   localStorage.setItem("user", JSON.stringify(respUser.data));
   localStorage.setItem("dataUser", JSON.stringify(respData.data));
   const user =  localStorage.getItem('user')
-  const dataUser = localStorage.getItem('dataUser') */
-  /* const appId = JSON.parse(dataUser).appId */
+  const dataUser = localStorage.getItem('dataUser')
+  const appId = JSON.parse(dataUser).appId
 
   //vercel//////////////////////////
-  const appId = '360666669950141'
+  /* const appId = '360666669950141' */
   /////////////////////////////////
 
   window.fbAsyncInit = function () {
     FB.init({
-      appId: appId,
+      appId: process.env.FACEBOOK_CLIENT_ID,
       xfbml: true,
       version: "v18.0",
     });
