@@ -70,3 +70,63 @@
 .telegram:hover {
   color: #31a8e0;
 }
+
+.btnLogin {
+  background: #ebebeb;
+  width: 100%;
+  margin-top: 1rem;
+  height: 4rem;
+}
+
+hr {
+  height: 11vh;
+  width: 0.2vw;
+  border-width: 0;
+  color: #f5f5f5;
+  background-color: #f5f5f5;
+  margin-left: 0.5rem;
+}
+
+.socialButton {
+  border: 1px solid;
+  width: 25rem;
+  height: 4rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.socialButton:hover {
+  background-color: #ebebeb;
+}
+
+.inputLog {
+  padding: 0.5rem;
+  width: 23rem;
+  color: #000;
+}
+
+.inputLabel {
+  width: 25rem;
+  margin-bottom: 1rem;
+  font-size: medium;
+  color: #ABABAB;
+  font-weight: 500;
+}
+
+.orDiv {
+  width: 20rem;
+  display: grid;
+  justify-content: center;
+}
+
+.imgLogo {
+  margin-right: 5.5rem;
+  width: 1.5rem;
+  margin-left: 1.5rem;
+}
+
+.bgImg {
+  background-image: url('../../public/images/hero-bg.jpg');
+}
