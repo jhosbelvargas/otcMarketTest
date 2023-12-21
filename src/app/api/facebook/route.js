@@ -1,4 +1,4 @@
-import axios from "axios";
+/* import axios from "axios";
 const initFacebookSdk = async () => {
   const respUser = await axios.get(`http://localhost:4000/user/findById/6568cbefe9c2eea7efb5af8a`);
   const respData = await axios.get("http://localhost:4000/config/6568cbefe9c2eea7efb5af8a");
@@ -9,7 +9,7 @@ const initFacebookSdk = async () => {
   const appId = JSON.parse(dataUser).appId
 
   //vercel//////////////////////////
-  /* const appId = '360666669950141' */
+  const appId = '360666669950141'
   /////////////////////////////////
 
   window.fbAsyncInit = function () {
@@ -32,3 +32,4 @@ const initFacebookSdk = async () => {
 };
 
 export { initFacebookSdk };
+ */

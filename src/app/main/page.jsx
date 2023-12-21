@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import Link from "next/link";
-import { initFacebookSdk } from "../api/facebook/route";
+/* import { initFacebookSdk } from "../api/facebook/route"; */
 import Modal from "../../components/Modal";
 import Navbar from "../../components/Navbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -182,6 +182,26 @@ function Main() {
     } catch (error) {
       console.error(error);
     }
+  };
+
+  const initFacebookSdk = async () => {
+    window.fbAsyncInit = function () {
+      FB.init({
+        appId: process.env.FACEBOOK_CLIENT_ID,
+        xfbml: true,
+        version: "v18.0",
+      });
+    };
+  
+    (function (d, s, id) {
+      var js,
+        fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s);
+      js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    })(document, "script", "facebook-jssdk");
   };
 
   const openInsta = () => {
