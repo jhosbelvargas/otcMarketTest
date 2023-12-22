@@ -163,7 +163,6 @@ function Login() {
       await signIn("facebook");
     } catch (error) {
       console.error("Error during Google sign in:", error);
-      console.log('hola soy goku2')
     }
   };
 
@@ -203,9 +202,9 @@ function Login() {
     }
   };
 
-  useEffect(() => {
+  /* useEffect(() => {
     userSession();
-  }, [status]);
+  }, [status]); */
 
   return (
     <div className="bg-white h-screen grid">
