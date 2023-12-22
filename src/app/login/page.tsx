@@ -153,7 +153,7 @@ function Login() {
   const handleGoogleSignIn = async () => {
     try {
       await signIn("google")
-      .then(async ()=> {
+      /* .then(async ()=> {
         console.log('Hola estoy aca')
         if (status === "authenticated") {
           const userEmail = session.user.email;
@@ -188,7 +188,7 @@ function Login() {
             console.log('hola soy goku1')
           }
         }
-      });
+      }); */
     } catch (error) {
       console.error("Error during Google sign in:", error);
     }
@@ -241,9 +241,11 @@ function Login() {
     }
   };
 
-  /* useEffect(() => {
-    userSession();
-  }, [status]); */
+  useEffect(() => {
+    if (session !== null) {
+      userSession();
+    }
+  }, [status]);
 
   return (
     <div className="bg-white h-screen grid">
