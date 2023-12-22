@@ -154,6 +154,7 @@ function Login() {
     try {
       await signIn("google")
       .then(async ()=> {
+        console.log('Hola estoy aca')
         if (status === "authenticated") {
           const userEmail = session.user.email;
           const userFindUrl = `${process.env.NEXT_PUBLIC_BACKEND_URL}/user/findUserByEmail/${userEmail}`;
@@ -200,6 +201,8 @@ function Login() {
       console.error("Error during Google sign in:", error);
     }
   };
+
+  console.log('Ya actualice')
 
   const userSession = async () => {
     if (status === "authenticated") {
