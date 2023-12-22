@@ -202,7 +202,8 @@ function Login() {
     }
   };
 
-  console.log('Ya actualice')
+  console.log('Ya actualice2')
+  console.log(session)
 
   const userSession = async () => {
     if (status === "authenticated") {
