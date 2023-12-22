@@ -115,93 +115,101 @@ function Main() {
   };
 
   const getIdInstagram = async () => {
-    const fbToken = localStorage.getItem("fbAccesToken");
-    const token = fbToken;
-    const idFace = facebookIdPage;
-    try {
-      const peticion = await fetch(
-        `https://graph.facebook.com/v18.0/${idFace}/?fields=instagram_business_account&access_token=${token}`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      const peticionFinal = await peticion.json();
-      setInstaId(peticionFinal.instagram_business_account.id);
-      localStorage.setItem(
-        "idInsta",
-        peticionFinal.instagram_business_account.id
-      );
-    } catch (error) {
-      console.error(error);
+    if (typeof window !== 'undefined') {
+      const fbToken = localStorage.getItem("fbAccesToken");
+      const token = fbToken;
+      const idFace = facebookIdPage;
+      try {
+        const peticion = await fetch(
+          `https://graph.facebook.com/v18.0/${idFace}/?fields=instagram_business_account&access_token=${token}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        const peticionFinal = await peticion.json();
+        setInstaId(peticionFinal.instagram_business_account.id);
+        localStorage.setItem(
+          "idInsta",
+          peticionFinal.instagram_business_account.id
+        );
+      } catch (error) {
+        console.error(error);
+      }
     }
   };
 
   const getInstaContainer = async () => {
-    const fbToken = localStorage.getItem("fbAccesToken");
-    const token = fbToken;
-    const textInsta = result[2] && result[2].replace(/[\[\]]/g, "");
-    const caption = encodeURIComponent(textInsta);
-    const url = imagen;
-
-    try {
-      const peticion = await fetch(
-        `https://graph.facebook.com/v18.0/${instaId}/media?image_url=${url}&caption=${caption}&access_token=${token}`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      const peticionFinal = await peticion.json();
-      setInstaIdPost(peticionFinal.id);
-    } catch (error) {
-      console.error(error);
+    if (typeof window !== 'undefined') {
+      const fbToken = localStorage.getItem("fbAccesToken");
+      const token = fbToken;
+      const textInsta = result[2] && result[2].replace(/[\[\]]/g, "");
+      const caption = encodeURIComponent(textInsta);
+      const url = imagen;
+  
+      try {
+        const peticion = await fetch(
+          `https://graph.facebook.com/v18.0/${instaId}/media?image_url=${url}&caption=${caption}&access_token=${token}`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        const peticionFinal = await peticion.json();
+        setInstaIdPost(peticionFinal.id);
+      } catch (error) {
+        console.error(error);
+      }
     }
   };
 
   const postInstagram = async () => {
-    const fbToken = localStorage.getItem("fbAccesToken");
-    const token = fbToken;
-    const idContainer = instaIdPost;
-    try {
-      const peticion = await fetch(
-        `https://graph.facebook.com/v18.0/${instaId}/media_publish?creation_id=${idContainer}&access_token=${token}`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      const peticionFinal = await peticion.json();
-      return peticionFinal;
-    } catch (error) {
-      console.error(error);
+    if(typeof window !== 'undefined') {
+      const fbToken = localStorage.getItem("fbAccesToken");
+      const token = fbToken;
+      const idContainer = instaIdPost;
+      try {
+        const peticion = await fetch(
+          `https://graph.facebook.com/v18.0/${instaId}/media_publish?creation_id=${idContainer}&access_token=${token}`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        const peticionFinal = await peticion.json();
+        return peticionFinal;
+      } catch (error) {
+        console.error(error);
+      }
     }
   };
 
   const initFacebookSdk = async () => {
-    window.fbAsyncInit = function () {
-      FB.init({
-        appId: process.env.FACEBOOK_CLIENT_ID,
-        xfbml: true,
-        version: "v18.0",
-      });
-    };
-  
-    (function (d, s, id) {
-      var js,
-        fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s);
-      js.id = id;
-      js.src = "https://connect.facebook.net/en_US/sdk.js";
-      fjs.parentNode.insertBefore(js, fjs);
-    })(document, "script", "facebook-jssdk");
+    if (typeof window !== 'undefined') {
+      window.fbAsyncInit = function () {
+        FB.init({
+          appId: process.env.FACEBOOK_CLIENT_ID,
+          xfbml: true,
+          version: "v18.0",
+        });
+      };
+    
+      (function (d, s, id) {
+        var js,
+          fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+      })(document, "script", "facebook-jssdk");
+    }
   };
 
   const openInsta = () => {

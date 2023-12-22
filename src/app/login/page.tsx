@@ -166,8 +166,6 @@ function Login() {
     }
   };
 
-  console.log(session);
-
   const userSession = async () => {
     if (status === "authenticated") {
       const userEmail = session.user.email;
