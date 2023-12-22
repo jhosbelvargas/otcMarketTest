@@ -35,6 +35,7 @@ const handler = NextAuth({
       return token;
     },
     session({ session, token }) {
+      console.log('holasoycallback')
       session.user = token.user as any;
       return session;
     },
