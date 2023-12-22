@@ -218,10 +218,16 @@ function Main() {
   };
 
   useEffect(() => {
-    const data = localStorage.getItem("dataUser");
+    if (typeof window !== 'undefined') {
+      const data = localStorage.getItem("dataUser");
+      const data2 = JSON.parse(data);
+      setDataUser(data2);
+      setFacebookIdPage(data2.pageId);
+    }
+    /* const data = localStorage.getItem("dataUser");
     const data2 = JSON.parse(data);
     setDataUser(data2);
-    setFacebookIdPage(data2.pageId);
+    setFacebookIdPage(data2.pageId); */
 
     initFacebookSdk();
     getIdInstagram();
