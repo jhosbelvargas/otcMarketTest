@@ -15,34 +15,36 @@ export default function Prueba() {
   const [code, setCode] = useState("");
   const [accessToken, setAccessToken] = useState("");
 
-  const user_Id = localStorage.getItem("userSettingId");
-
+  
   const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    try {
-      const dataUser = {
-        appId: appData,
-        appSecret: secretData,
-        pageId: pageData,
-        whatsAppNum: whatsNum,
-        botToken: botTokenTelegram,
-        chatId: chatIdTelegram,
-      };
-      const response = axios.patch(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/config/${user_Id}`,
-        dataUser
-      );
-      setAppData("");
-      setSecretData("");
-      setPageData("");
-      setWhatsNum("");
-      setBotTokenTelegram("");
-      setChatIdTelegram("");
-      alert("Enviado");
-      return await response;
-    } catch (error) {
-      console.error(error);
+    if (typeof window !== 'undefined') {
+      const user_Id = localStorage.getItem("userSettingId");
+      e.preventDefault();
+  
+      try {
+        const dataUser = {
+          appId: appData,
+          appSecret: secretData,
+          pageId: pageData,
+          whatsAppNum: whatsNum,
+          botToken: botTokenTelegram,
+          chatId: chatIdTelegram,
+        };
+        const response = axios.patch(
+          `${process.env.NEXT_PUBLIC_BACKEND_URL}/config/${user_Id}`,
+          dataUser
+        );
+        setAppData("");
+        setSecretData("");
+        setPageData("");
+        setWhatsNum("");
+        setBotTokenTelegram("");
+        setChatIdTelegram("");
+        alert("Enviado");
+        return await response;
+      } catch (error) {
+        console.error(error);
+      }
     }
   };
 
@@ -57,9 +59,9 @@ export default function Prueba() {
   };
 
   const getToken = async () => {
-    const dataUser = localStorage.getItem("dataUser");
+    /* const dataUser = localStorage.getItem("dataUser");
     const clientId = JSON.parse(dataUser).appId;
-    const clientSecret = JSON.parse(dataUser).appSecret;
+    const clientSecret = JSON.parse(dataUser).appSecret; */
 
     let myHeaders = new Headers();
     myHeaders.append(
@@ -86,8 +88,8 @@ export default function Prueba() {
     }
   };
 
-  const dataUser = localStorage.getItem("dataUser");
-  const clientId = JSON.parse(dataUser).appId;
+  /* const dataUser = localStorage.getItem("dataUser");
+  const clientId = JSON.parse(dataUser).appId; */
 
   const urlPage = `https://www.facebook.com/v18.0/dialog/oauth?client_id=${process.env.FACEBOOK_CLIENT_ID}&redirect_uri=https://www.example.com/&scope=pages_show_list,business_management,instagram_basic,instagram_manage_comments,instagram_content_publish,pages_read_engagement,pages_manage_posts,public_profile`;
 
