@@ -1,8 +1,8 @@
-import { NextResponse } from "next/server";
-import { OpenAI } from "openai";
+/* import { NextResponse } from "next/server";
+import { OpenAI } from "openai"; */
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
+//const openai = new OpenAI({
+  /* apiKey: process.env.OPENAI_API_KEY,
 });
 if (!openai.apiKey) throw new Error("OPENAI_API_KEY is not defined");
 
@@ -13,7 +13,7 @@ export async function POST(request) {
       status: 400,
     });
   }
-  try {
+  try { */
     /* const response = await openai.images.generate({
       model: "dall-e-3",
       prompt: `Genera una imagen que represente la colaboración entre Santo CryptoMining Corp. y Planta Vida S.A.S. Captura la esencia de esta asociación en una escena visualmente atractiva`,
@@ -23,9 +23,9 @@ export async function POST(request) {
     });
     console.log(response.data[0].url);
     return NextResponse.json(response.data[0].url); */
-  } catch (error) {
+  /* } catch (error) {
     return NextResponse.error(error, {
       status: 500,
     });
-  }
-}
+  } */
+//}
