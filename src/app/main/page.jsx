@@ -17,7 +17,6 @@ import {
 } from "@fortawesome/free-regular-svg-icons";
 import { useSession } from "next-auth/react";
 
-
 function Main() {
   const [prompt, setPrompt] = useState("");
   const [result, setResult] = useState("");
@@ -58,7 +57,9 @@ function Main() {
       }
     } else {
       console.error("Request error:", response.status);
-      console.error("No more credits to generate responses, check your openai account.");
+      console.error(
+        "No more credits to generate responses, check your openai account."
+      );
       setLoading(false);
     }
   };
@@ -115,7 +116,7 @@ function Main() {
   };
 
   const getIdInstagram = async () => {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       const fbToken = localStorage.getItem("fbAccesToken");
       const token = fbToken;
       const idFace = facebookIdPage;
@@ -142,13 +143,13 @@ function Main() {
   };
 
   const getInstaContainer = async () => {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       const fbToken = localStorage.getItem("fbAccesToken");
       const token = fbToken;
       const textInsta = result[2] && result[2].replace(/[\[\]]/g, "");
       const caption = encodeURIComponent(textInsta);
       const url = imagen;
-  
+
       try {
         const peticion = await fetch(
           `https://graph.facebook.com/v18.0/${instaId}/media?image_url=${url}&caption=${caption}&access_token=${token}`,
@@ -168,7 +169,7 @@ function Main() {
   };
 
   const postInstagram = async () => {
-    if(typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       const fbToken = localStorage.getItem("fbAccesToken");
       const token = fbToken;
       const idContainer = instaIdPost;
@@ -191,7 +192,18 @@ function Main() {
   };
 
   const initFacebookSdk = async () => {
-    if (typeof window !== 'undefined') {
+    const respUser = await axios.get(
+      `http://localhost:4000/user/findById/6568cbefe9c2eea7efb5af8a`
+    );
+    const respData = await axios.get(
+      "http://localhost:4000/config/6568cbefe9c2eea7efb5af8a"
+    );
+    localStorage.setItem("user", JSON.stringify(respUser.data));
+    localStorage.setItem("dataUser", JSON.stringify(respData.data));
+    const user = localStorage.getItem("user");
+    const dataUser = localStorage.getItem("dataUser");
+    const appId = JSON.parse(dataUser).appId;
+    if (typeof window !== "undefined") {
       window.fbAsyncInit = function () {
         FB.init({
           appId: process.env.FACEBOOK_CLIENT_ID,
@@ -199,7 +211,7 @@ function Main() {
           version: "v18.0",
         });
       };
-    
+
       (function (d, s, id) {
         var js,
           fjs = d.getElementsByTagName(s)[0];
@@ -213,7 +225,6 @@ function Main() {
   };
 
   const openInsta = () => {
-
     getInstaContainer()
       .then(() => openModal())
       .catch((error) => {
@@ -226,7 +237,7 @@ function Main() {
   };
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       const data = localStorage.getItem("dataUser");
       const data2 = JSON.parse(data);
       setDataUser(data2);

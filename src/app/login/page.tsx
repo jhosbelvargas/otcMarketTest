@@ -153,42 +153,6 @@ function Login() {
   const handleGoogleSignIn = async () => {
     try {
       await signIn("google")
-      /* .then(async ()=> {
-        console.log('Hola estoy aca')
-        if (status === "authenticated") {
-          const userEmail = session.user.email;
-          const userFindUrl = `${process.env.NEXT_PUBLIC_BACKEND_URL}/user/findUserByEmail/${userEmail}`;
-    
-          try {
-            const userFind = await axios.get(userFindUrl);
-            axios
-              .get(
-                `${process.env.NEXT_PUBLIC_BACKEND_URL}/config/${userFind.data._id}`
-              )
-              .then(async (respConfig: any) => {
-                localStorage.setItem("userSettingId", respConfig.data._id);
-              });
-            if (userFind.data.email) {
-              router.push("/main");
-            } else {
-              const dataUser = {
-                firstname: session.user.name,
-                secondname: "",
-                password: "",
-                email: session.user.email,
-              };
-              await axios.post(
-                `${process.env.NEXT_PUBLIC_BACKEND_URL}/user`,
-                dataUser
-              );
-              router.push("/main");
-            }
-          } catch (error) {
-            console.error("Error fetching user:", error);
-            console.log('hola soy goku1')
-          }
-        }
-      }); */
     } catch (error) {
       console.error("Error during Google sign in:", error);
     }
@@ -202,7 +166,7 @@ function Login() {
     }
   };
 
-  console.log('Ya actualice4')
+  console.log('Ya actualice5')
   console.log(session)
 
   const userSession = async () => {
