@@ -198,10 +198,10 @@ console.log(session)
   const initFacebookSdk = async () => {
     const idConfig = localStorage.getItem('userSettingId')
     const respUser = await axios.get(
-      `${NEXT_PUBLIC_BACKEND_URL}/user/findById/${idConfig}`
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/user/findById/${idConfig}`
     );
     const respData = await axios.get(
-      `${NEXT_PUBLIC_BACKEND_URL}/config/${idConfig}`
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/config/${idConfig}`
     );
     localStorage.setItem("user", JSON.stringify(respUser.data));
     localStorage.setItem("dataUser", JSON.stringify(respData.data));
