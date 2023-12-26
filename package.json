@@ -16,6 +16,7 @@
     "axios": "^1.6.2",
     "bcryptjs": "^2.4.3",
     "clipboard": "^2.0.11",
+    "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.2",
     "next": "14.0.2",
