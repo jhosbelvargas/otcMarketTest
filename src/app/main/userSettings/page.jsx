@@ -74,7 +74,7 @@ export default function Prueba() {
       redirect: "follow",
     };
     const response = await fetch(
-      `https://graph.facebook.com/v18.0/oauth/access_token?client_id=${process.env.FACEBOOK_CLIENT_ID}&client_secret=${process.env.FACEBOOK_CLIENT_SECRET}&redirect_uri=https://www.example.com/&code=${code}`,
+      `https://graph.facebook.com/v18.0/oauth/access_token?client_id=${process.env.NEXT_PUBLIC_FACEBOOK_CLIENT_ID}&client_secret=${process.env.NEXT_PUBLIC_FACEBOOK_CLIENT_SECRET}&redirect_uri=https://www.example.com/&code=${code}`,
       requestOptions
     );
     if (response.ok) {
@@ -91,7 +91,7 @@ export default function Prueba() {
   /* const dataUser = localStorage.getItem("dataUser");
   const clientId = JSON.parse(dataUser).appId; */
 
-  const urlPage = `https://www.facebook.com/v18.0/dialog/oauth?client_id=${process.env.FACEBOOK_CLIENT_ID}&redirect_uri=https://www.example.com/&scope=pages_show_list,business_management,instagram_basic,instagram_manage_comments,instagram_content_publish,pages_read_engagement,pages_manage_posts,public_profile`;
+  const urlPage = `https://www.facebook.com/v18.0/dialog/oauth?client_id=${process.env.NEXT_PUBLIC_FACEBOOK_CLIENT_ID}&redirect_uri=https://www.example.com/&scope=pages_show_list,business_management,instagram_basic,instagram_manage_comments,instagram_content_publish,pages_read_engagement,pages_manage_posts,public_profile`;
 
   return (
     <div className="grid">

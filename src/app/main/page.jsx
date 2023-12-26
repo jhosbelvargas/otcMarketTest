@@ -213,7 +213,7 @@ console.log(session)
     if (typeof window !== "undefined") {
       window.fbAsyncInit = function () {
         FB.init({
-          appId: process.env.FACEBOOK_CLIENT_ID,
+          appId: process.env.NEXT_PUBLIC_FACEBOOK_CLIENT_ID,
           xfbml: true, 
           version: "v18.0",
         });
