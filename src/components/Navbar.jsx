@@ -18,7 +18,7 @@ function Navbar() {
           <li className="px-3 py-1 text-2xl font-bold text-cyan-800 hover:text-black transition duration-300 ease-in-out hover:scale-105">
             <button
               onClick={() => {
-                signOut();
+                signOut({ callbackUrl: "/login", redirect: true });
               }}
             >
               Logout

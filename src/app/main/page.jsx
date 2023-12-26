@@ -16,6 +16,7 @@ import {
   faBookmark,
 } from "@fortawesome/free-regular-svg-icons";
 import { useSession } from "next-auth/react";
+import axios from 'axios'
 
 function Main() {
   const [prompt, setPrompt] = useState("");
@@ -115,6 +116,9 @@ function Main() {
     }
   };
 
+  const { data: session, status } = useSession();
+console.log(session)
+
   const getIdInstagram = async () => {
     if (typeof window !== "undefined") {
       const fbToken = localStorage.getItem("fbAccesToken");
@@ -192,22 +196,25 @@ function Main() {
   };
 
   const initFacebookSdk = async () => {
+    const idConfig = localStorage.getItem('userSettingId')
     const respUser = await axios.get(
-      `http://localhost:4000/user/findById/6568cbefe9c2eea7efb5af8a`
+      `${NEXT_PUBLIC_BACKEND_URL}/user/findById/${idConfig}`
     );
     const respData = await axios.get(
-      "http://localhost:4000/config/6568cbefe9c2eea7efb5af8a"
+      `${NEXT_PUBLIC_BACKEND_URL}/config/${idConfig}`
     );
     localStorage.setItem("user", JSON.stringify(respUser.data));
     localStorage.setItem("dataUser", JSON.stringify(respData.data));
     const user = localStorage.getItem("user");
     const dataUser = localStorage.getItem("dataUser");
     const appId = JSON.parse(dataUser).appId;
+    console.log(JSON.parse(user))
+    console.log(JSON.parse(dataUser))
     if (typeof window !== "undefined") {
       window.fbAsyncInit = function () {
         FB.init({
           appId: process.env.FACEBOOK_CLIENT_ID,
-          xfbml: true,
+          xfbml: true, 
           version: "v18.0",
         });
       };

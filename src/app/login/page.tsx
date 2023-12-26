@@ -106,7 +106,7 @@ function Login() {
   const userData = async () => {
     const MySwal = withReactContent(Swal);
     try {
-      const response = await axios
+      await axios
         .get(
           `${process.env.NEXT_PUBLIC_BACKEND_URL}/user/findUserByEmail/${email}`
         )
@@ -166,7 +166,7 @@ function Login() {
     }
   };
 
-  console.log('Ya actualice6')
+  console.log('Ya actualice7')
   console.log(session)
 
   const userSession = async () => {
@@ -181,7 +181,7 @@ function Login() {
             `${process.env.NEXT_PUBLIC_BACKEND_URL}/config/${userFind.data._id}`
           )
           .then(async (respConfig: any) => {
-            localStorage.setItem("userSettingId", respConfig.data._id);
+            localStorage.setItem("userSettingId", respConfig.data.userId);
           });
         if (userFind.data.email) {
           router.push("/main");
