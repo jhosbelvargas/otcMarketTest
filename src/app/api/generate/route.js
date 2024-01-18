@@ -15,7 +15,7 @@ export async function POST(request) {
   }
   try {
     const response = await openai.completions.create({
-      model: "text-davinci-003",
+      model: "gpt-3.5-turbo-instruct",
       prompt: `"Generate diverse messages tailored for Twitter, Facebook, Instagram, WhatsApp Channel, Reddit, LinkedIn, and Telegram, utilizing the given text. Incorporate up to three hashtags and replace stock symbols in parentheses with "$" for smooth links (e.g., OTC PINK: SANP becomes $SANP, (TSXV:QNC) becomes $QNC). Surround each response with square brackets [] for clarity. Ensure the WhatsApp message excludes emoticons. For the Twitter message, specifically alter the stock symbols, and keep the total length within 280 characters, including hashtags."${body.prompt}`,
       temperature: 0.7,
       max_tokens: 1000,

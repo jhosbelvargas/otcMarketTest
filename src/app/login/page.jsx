@@ -110,7 +110,7 @@ function Login() {
         .get(
           `${process.env.NEXT_PUBLIC_BACKEND_URL}/user/findUserByEmail/${email}`
         )
-        .then(async (response: any) => {
+        .then(async (response) => {
           const PasswordCorrect = await compare(
             password,
             response.data.password
@@ -126,7 +126,7 @@ function Login() {
                 .get(
                   `${process.env.NEXT_PUBLIC_BACKEND_URL}/config/${response.data._id}`
                 )
-                .then(async (respConfig: any) => {
+                .then(async (respConfig) => {
                   localStorage.setItem("userSettingId", respConfig.data._id);
                 });
               localStorage.setItem("userID", response.data._id);
@@ -152,7 +152,7 @@ function Login() {
 
   const handleGoogleSignIn = async () => {
     try {
-      await signIn("google")
+      await signIn("google");
     } catch (error) {
       console.error("Error during Google sign in:", error);
     }
@@ -166,9 +166,6 @@ function Login() {
     }
   };
 
-  console.log('Ya actualice11')
-  console.log(session)
-
   const userSession = async () => {
     if (status === "authenticated") {
       const userEmail = session.user.email;
@@ -180,8 +177,9 @@ function Login() {
           .get(
             `${process.env.NEXT_PUBLIC_BACKEND_URL}/config/${userFind.data._id}`
           )
-          .then(async (respConfig: any) => {
-            localStorage.setItem("userSettingId", respConfig.data.userId);
+          .then(async (respConfig) => {
+            localStorage.setItem("userID", respConfig.data.userId);
+            localStorage.setItem("userSettingId", respConfig.data._id);
           });
         if (userFind.data.email) {
           router.push("/main");
@@ -200,7 +198,7 @@ function Login() {
         }
       } catch (error) {
         console.error("Error fetching user:", error);
-        console.log('hola soy goku1')
+        console.log("hola soy goku1");
       }
     }
   };
@@ -210,6 +208,49 @@ function Login() {
       userSession();
     }
   }, [status]);
+
+  /* useEffect(() => {
+    window.fbAsyncInit = function () {
+      FB.init({
+        appId: process.env.NEXT_PUBLIC_FACEBOOK_APP_ID,
+        autoLogAppEvents: true,
+        xfbml: true,
+        version: 'v18.0',
+      });
+
+      // Verificar el estado de inicio de sesión al cargar la página
+      FB.getLoginStatus(function (response) {
+        statusChangeCallback(response);
+      });
+    };
+
+    (function (d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  }, []);
+
+  const handleFacebookLogin = () => {
+    // Asegúrate de que FB esté definido antes de llamar a FB.login()
+    if (typeof FB !== 'undefined') {
+      FB.login(function (response) {
+        statusChangeCallback(response);
+      }, { scope: 'public_profile,email' });
+    }
+  };
+
+  const statusChangeCallback = (response) => {
+    if (response.status === 'connected') {
+      // El usuario ha iniciado sesión correctamente
+      console.log('Usuario conectado:', response);
+      // Puedes realizar acciones adicionales, como enviar el token a tu servidor
+    } else {
+      console.log('Usuario no conectado.');
+    }
+  }; */
 
   return (
     <div className="bg-white h-screen grid">

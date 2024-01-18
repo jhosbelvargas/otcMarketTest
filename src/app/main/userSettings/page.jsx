@@ -3,6 +3,8 @@ import axios from "axios";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import Navbar from "../../../components/Navbar";
+import withReactContent from "sweetalert2-react-content";
+import Swal from "sweetalert2";
 
 export default function Prueba() {
   const [appData, setAppData] = useState("");
@@ -14,13 +16,15 @@ export default function Prueba() {
   const [url, setUrl] = useState("");
   const [code, setCode] = useState("");
   const [accessToken, setAccessToken] = useState("");
+  const [nuevaUrl, setNuevaUrl] = useState('');
 
-  
   const handleSubmit = async (e) => {
-    if (typeof window !== 'undefined') {
+    const MySwal = withReactContent(Swal);
+
+    if (typeof window !== "undefined") {
       const user_Id = localStorage.getItem("userSettingId");
       e.preventDefault();
-  
+
       try {
         const dataUser = {
           appId: appData,
@@ -30,7 +34,7 @@ export default function Prueba() {
           botToken: botTokenTelegram,
           chatId: chatIdTelegram,
         };
-        const response = axios.patch(
+        const response = await axios.patch(
           `${process.env.NEXT_PUBLIC_BACKEND_URL}/config/${user_Id}`,
           dataUser
         );
@@ -40,10 +44,19 @@ export default function Prueba() {
         setWhatsNum("");
         setBotTokenTelegram("");
         setChatIdTelegram("");
-        alert("Enviado");
-        return await response;
+        await MySwal.fire({
+          icon: "success",
+          title: "Perfect!",
+          text: "Your profile has been updated.",
+        });
+        return response;
       } catch (error) {
         console.error(error);
+        await MySwal.fire({
+          icon: "error",
+          title: "Error",
+          text: "Failed to update your profile.",
+        });
       }
     }
   };
@@ -59,10 +72,6 @@ export default function Prueba() {
   };
 
   const getToken = async () => {
-    /* const dataUser = localStorage.getItem("dataUser");
-    const clientId = JSON.parse(dataUser).appId;
-    const clientSecret = JSON.parse(dataUser).appSecret; */
-
     let myHeaders = new Headers();
     myHeaders.append(
       "Cookie",
@@ -87,9 +96,6 @@ export default function Prueba() {
       console.log("Error en la solicitud:", response.statusText);
     }
   };
-
-  /* const dataUser = localStorage.getItem("dataUser");
-  const clientId = JSON.parse(dataUser).appId; */
 
   const urlPage = `https://www.facebook.com/v18.0/dialog/oauth?client_id=${process.env.NEXT_PUBLIC_FACEBOOK_CLIENT_ID}&redirect_uri=https://www.example.com/&scope=pages_show_list,business_management,instagram_basic,instagram_manage_comments,instagram_content_publish,pages_read_engagement,pages_manage_posts,public_profile`;
 

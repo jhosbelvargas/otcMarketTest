@@ -5,7 +5,6 @@ import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import Link from "next/link";
-/* import { initFacebookSdk } from "../api/facebook/route"; */
 import Modal from "../../components/Modal";
 import Navbar from "../../components/Navbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -15,8 +14,8 @@ import {
   faComment,
   faBookmark,
 } from "@fortawesome/free-regular-svg-icons";
-import { useSession } from "next-auth/react";
-import axios from 'axios'
+import { useSession, getSession } from "next-auth/react";
+import axios from "axios";
 
 function Main() {
   const [prompt, setPrompt] = useState("");
@@ -65,7 +64,8 @@ function Main() {
     }
   };
 
-  /* const {data: session} = useSession() */
+  /* const {data: session} = getSession()
+  let url = window.location.href */
 
   const telegramSubmit = async (e) => {
     const MySwal = withReactContent(Swal);
@@ -116,8 +116,8 @@ function Main() {
     }
   };
 
-  const { data: session, status } = useSession();
-console.log(session)
+  /* const { data: session, status } = useSession();
+  console.log(session); */
 
   const getIdInstagram = async () => {
     if (typeof window !== "undefined") {
@@ -196,25 +196,22 @@ console.log(session)
   };
 
   const initFacebookSdk = async () => {
-    const idConfig = localStorage.getItem('userSettingId')
+    const idConfig = localStorage.getItem("userSettingId");
+    const userID = localStorage.getItem("userID");
     const respUser = await axios.get(
       `${process.env.NEXT_PUBLIC_BACKEND_URL}/user/findById/${idConfig}`
     );
     const respData = await axios.get(
-      `${process.env.NEXT_PUBLIC_BACKEND_URL}/config/${idConfig}`
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/config/${userID}`
     );
     localStorage.setItem("user", JSON.stringify(respUser.data));
     localStorage.setItem("dataUser", JSON.stringify(respData.data));
-    const user = localStorage.getItem("user");
-    const dataUser = localStorage.getItem("dataUser");
-    const appId = JSON.parse(dataUser).appId;
-    console.log(JSON.parse(user))
-    console.log(JSON.parse(dataUser))
+
     if (typeof window !== "undefined") {
       window.fbAsyncInit = function () {
         FB.init({
           appId: process.env.NEXT_PUBLIC_FACEBOOK_CLIENT_ID,
-          xfbml: true, 
+          xfbml: true,
           version: "v18.0",
         });
       };
@@ -248,13 +245,8 @@ console.log(session)
       const data = localStorage.getItem("dataUser");
       const data2 = JSON.parse(data);
       setDataUser(data2);
-      setFacebookIdPage(data2.pageId);
+      setFacebookIdPage(data2?.pageId);
     }
-    /* const data = localStorage.getItem("dataUser");
-    const data2 = JSON.parse(data);
-    setDataUser(data2);
-    setFacebookIdPage(data2.pageId); */
-
     initFacebookSdk();
     getIdInstagram();
   }, [imagen]);
